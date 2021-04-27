@@ -16,7 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 """
-import os, logging, json, time, urllib, re, yaml
+import os, logging, json, time, urllib.request, urllib.parse, urllib.error, re, yaml
 from selenium import webdriver
 
 sandbox_key = "sandbox-user"
@@ -78,6 +78,6 @@ def get_authorization_code(signin_url):
     else:
         logging.error("Unable to obtain code via sign in URL")
     
-    decoded_code = urllib.unquote(code).decode('utf8')
+    decoded_code = urllib.parse.unquote(code).decode('utf8')
     return decoded_code
     

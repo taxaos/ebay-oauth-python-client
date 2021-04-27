@@ -17,13 +17,13 @@ limitations under the License.
 """
 
 import json
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import requests
 import logging
-import model.util
+from . import model.util
 from datetime import datetime, timedelta
-from credentialutil import credentialutil
-from model.model import oAuth_token
+from .credentialutil import credentialutil
+from .model.model import oAuth_token
 
 LOGFILE = 'eBay_Oauth_log.txt'
 logging.basicConfig(level=logging.DEBUG, filename=LOGFILE, format="%(asctime)s: %(levelname)s - %(funcName)s: %(message)s", filemode='w')
@@ -53,7 +53,7 @@ class oauth2api(object):
             param.update({'state':state})
         
        
-        query = urllib.urlencode(param)
+        query = urllib.parse.urlencode(param)
         return env_type.web_endpoint + '?' + query
     
 
